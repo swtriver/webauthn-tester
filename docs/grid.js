@@ -68,6 +68,12 @@ function CreateGrid(definition, onchange) {
 					.attr("value", property.input.value)
 					.attr("id", property.id);
 				break;
+			case "password":
+				input = $("<input>")
+					.attr("type", "password")
+					.attr("id", property.id)
+					.attr("placeholder", property.input.placeholder);
+				break;
 			}
 			if(property.bind) {
 				property.bind(input);

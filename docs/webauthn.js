@@ -167,6 +167,8 @@ function decodeAuthenticatorData(data) {
 		 * credentialPublicKey variable
 		 */
 		var aaguid = view.buffer.slice(offset, offset + 16); offset += 16;
+		console.log("AAGUID:" + buf2hex(aaguid));
+		aaguid = buf2hex(aaguid);
 		var credentialIdLength = view.getUint16(offset, false); offset += 2;
 		var credentialId = view.buffer.slice(offset, offset + credentialIdLength); offset += credentialIdLength;
 		var credentialPublicKey = view.buffer.slice(offset);
@@ -177,6 +179,10 @@ function decodeAuthenticatorData(data) {
 		};
 	}
 	return authenticatorData;
+}
+
+function buf2hex(buffer) { // buffer is an ArrayBuffer
+  return [...new Uint8Array(buffer)].map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
 /**
